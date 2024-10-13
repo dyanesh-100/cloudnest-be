@@ -1,7 +1,5 @@
 Controller/
 Routes/
-Data/
-models/
 node_modules/
 .env
 
