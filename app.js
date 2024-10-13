@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require("express")
 const cors = require('cors')
 const PORT = process.env.PORT
-
+const filesRoute = require('./Routes/filesRoute')
 const loginRoute = require('./Routes/loginRoute')
 const signUpRoute = require('./Routes/signUpRoute')
 const app = express()
@@ -22,7 +22,7 @@ app.get('/',(request,response)=>{
 
 app.use('/api/v1',loginRoute)
 app.use('/api/v1',signUpRoute)
-
+app.use('/api/v1',filesRoute)
 
 
 app.listen(PORT, console.log(`Server running at http://localhost:${PORT}/api/v1`))
