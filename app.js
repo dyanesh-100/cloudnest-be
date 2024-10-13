@@ -3,6 +3,8 @@ const express = require("express")
 const cors = require('cors')
 const PORT = process.env.PORT
 
+const loginRoute = require('./Routes/loginRoute')
+const signUpRoute = require('./Routes/signUpRoute')
 const app = express()
 
 const mongoose =require('mongoose')
@@ -18,6 +20,8 @@ app.get('/',(request,response)=>{
 })
 
 
+app.use('/api/v1',loginRoute)
+app.use('/api/v1',signUpRoute)
 
 
 
