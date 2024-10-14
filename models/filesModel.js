@@ -17,7 +17,7 @@ const filesModel = new mongoose.Schema(
             enum: ['file', 'folder']
           },
           size: {
-            type: String,  
+            type: Number,  
             default: null
           },
           parentId: {

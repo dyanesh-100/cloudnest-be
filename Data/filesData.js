@@ -25,18 +25,18 @@ const initialData = [
     id: '3',
     name: 'index.js',
     type: 'file',
-    size: '50KB',
+    size: 51200,  // 50KB in bytes
     parentId: '2',
     createdAt: '2024-01-06T11:15:00',
     lastModifiedAt: '2024-01-06T11:50:00',
     userId: 'user1@gmail.com',
-    fileFormat: 'js'  // JavaScript file format
+    fileFormat: 'js'
   },
   {
     id: '4',
     name: 'package.json',
     type: 'file',
-    size: '5KB',
+    size: 5120,  // 5KB in bytes
     parentId: '2',
     createdAt: '2024-01-06T11:20:00',
     lastModifiedAt: '2024-01-06T11:55:00',
@@ -58,7 +58,7 @@ const initialData = [
     id: '6',
     name: 'Resume.docx',
     type: 'file',
-    size: '120KB',
+    size: 122880,  // 120KB in bytes
     parentId: '5',
     createdAt: '2024-01-07T08:10:00',
     lastModifiedAt: '2024-01-07T09:00:00',
@@ -80,7 +80,7 @@ const initialData = [
     id: '8',
     name: 'Invoice_2024.pdf',
     type: 'file',
-    size: '300KB',
+    size: 307200,  // 300KB in bytes
     parentId: '7',
     createdAt: '2024-01-07T10:10:00',
     lastModifiedAt: '2024-01-07T10:35:00',
@@ -113,7 +113,7 @@ const initialData = [
     id: '11',
     name: 'beach.jpg',
     type: 'file',
-    size: '2MB',
+    size: 2097152,  // 2MB in bytes
     parentId: '10',
     createdAt: '2024-01-08T09:15:00',
     lastModifiedAt: '2024-01-08T10:00:00',
@@ -124,7 +124,7 @@ const initialData = [
     id: '12',
     name: 'mountains.png',
     type: 'file',
-    size: '3MB',
+    size: 3145728,  // 3MB in bytes
     parentId: '10',
     createdAt: '2024-01-08T09:20:00',
     lastModifiedAt: '2024-01-08T10:05:00',
@@ -157,7 +157,7 @@ const initialData = [
     id: '15',
     name: 'UI_mockup.png',
     type: 'file',
-    size: '1.5MB',
+    size: 1572864,  // 1.5MB in bytes
     parentId: '14',
     createdAt: '2024-01-09T08:50:00',
     lastModifiedAt: '2024-01-09T09:20:00',
@@ -179,7 +179,7 @@ const initialData = [
     id: '17',
     name: 'Q3_review.pptx',
     type: 'file',
-    size: '5MB',
+    size: 5242880,  // 5MB in bytes
     parentId: '16',
     createdAt: '2024-01-10T07:05:00',
     lastModifiedAt: '2024-01-10T08:15:00',
@@ -201,7 +201,7 @@ const initialData = [
     id: '19',
     name: 'AnnualReport2024.pdf',
     type: 'file',
-    size: '1MB',
+    size: 1048576,  // 1MB in bytes
     parentId: '18',
     createdAt: '2024-01-10T07:15:00',
     lastModifiedAt: '2024-01-10T08:25:00',
@@ -212,7 +212,7 @@ const initialData = [
     id: '20',
     name: 'Book.pdf',
     type: 'file',
-    size: '2.3MB',
+    size: 2411724,  // 2.3MB in bytes
     parentId: null,
     createdAt: '2024-01-10T07:20:00',
     lastModifiedAt: '2024-01-10T08:30:00',
@@ -234,10 +234,10 @@ const initialData = [
     id: '22',
     name: 'OldProject.zip',
     type: 'file',
-    size: '5MB',
+    size: 5242880,  // 5MB in bytes
     parentId: '21',
-    createdAt: '2024-02-01T09:30:00',
-    lastModifiedAt: '2024-02-01T11:30:00',
+    createdAt: '2024-02-01T09:15:00',
+    lastModifiedAt: '2024-02-01T10:30:00',
     userId: 'user5@gmail.com',
     fileFormat: 'zip'
   }
