@@ -11,7 +11,7 @@ const displayFilesAndFoldersMetaData = async (request, response) => {
     try {
         const loggedInUserEmail = request.userId;
 
-        // Fetch authenticated user files from the database
+        
         const authenticatedUserFiles = await filesModel.find({ userId: loggedInUserEmail });
 
         if (authenticatedUserFiles.length === 0) {
@@ -21,7 +21,7 @@ const displayFilesAndFoldersMetaData = async (request, response) => {
         let totalStorageUsed = 0;
         let documentSize = 0, videoSize = 0, imageSize = 0, audioSize = 0;
 
-        // Calculate total storage used and categorize file sizes
+
         authenticatedUserFiles.forEach(file => {
             totalStorageUsed += file.size || 0;
 
