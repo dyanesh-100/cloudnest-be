@@ -1,7 +1,7 @@
-const userModel = require('../models/userModel')
+const userModel = require('../Models/userModel')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const JWT_TOKEN = 'qpliofoytmvefagouexmzehdsvusgidvfsdiv'
+const JWT_TOKEN = process.env.JWT_SECRET
 
 const loginExistingUser = async (request,response) => {
     const {email,password} = request.body
