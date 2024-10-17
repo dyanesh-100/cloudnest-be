@@ -151,6 +151,28 @@ const downloadFile = async(request,response) =>{
         response.status(500).json({message:error.message})
     }
 }
+const deleteFile = async(request,response) => {
+    const {fileid} = request.params
+    const userId = request.userId
+
+    try{
+        file = await filesModel.findOne({_id: fileid,userId})
+        if(!file){
+            return response.status(404).json({message:'file not found'})
+        }
+
+        if(file.userId !== userId){
+            return response.status(403).json({ error: 'You are not authorized to delete this file' })
+        }
+        await file.deleteOne({ _id: fileid });
+        
+        return response.status(200).json({message:'File deleted successfully'})
+    }
+    catch(error){
+        console.error('Error deleting file:', error);
+        return response.status(500).json({ error: 'Server error' });
+    }
+}
 
 const toggleFavourite = async (request, response) => {
     const { fileid } = request.params;
@@ -190,4 +212,4 @@ const getFavouriteFilesAndFolders = async (request, response) => {
 
 
 
-module.exports = { displayFilesAndFoldersMetaData,uploadFile,downloadFile,toggleFavourite,getFavouriteFilesAndFolders};
+module.exports = { displayFilesAndFoldersMetaData,uploadFile,downloadFile,toggleFavourite,getFavouriteFilesAndFolders,deleteFile};

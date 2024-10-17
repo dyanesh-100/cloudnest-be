@@ -1,5 +1,5 @@
 const express = require("express")
-const {displayFilesAndFoldersMetaData, uploadFile, downloadFile, toggleFavourite, getFavouriteFilesAndFolders } = require("../Controller/filesController")
+const {displayFilesAndFoldersMetaData, uploadFile, downloadFile, toggleFavourite, getFavouriteFilesAndFolders, deleteFile } = require("../Controller/filesController")
 const upload = require("../Middleware/multer")
 const authenticateUser = require("../Middleware/authenticateUser")
 
@@ -12,6 +12,8 @@ router.get('/download/:fileid',authenticateUser,downloadFile)
 router.post('/files',authenticateUser,displayFilesAndFoldersMetaData)
 
 router.get('/files',authenticateUser,displayFilesAndFoldersMetaData)
+
+router.delete('/files/:fileid',authenticateUser,deleteFile)
 
 router.post('/favourite/:fileid', authenticateUser, toggleFavourite);
 
