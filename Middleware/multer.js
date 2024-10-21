@@ -6,7 +6,7 @@ const upload = multer({
     limits: {fileSize: 3 * 1024 * 1024 * 1024},
     fileFilter: (req, file, cb) => {
         const allowedMimeTypes = [
-            // Images
+            
             'image/jpeg', 
             'image/png', 
             'image/gif', 
@@ -14,7 +14,6 @@ const upload = multer({
             'image/svg+xml', 
             'image/webp', 
 
-            // Videos
             'video/mp4', 
             'video/mkv', 
             'video/avi', 
@@ -22,7 +21,6 @@ const upload = multer({
             'video/x-msvideo', 
             'video/x-flv', 
 
-            // Audio
             'audio/mp3', 
             'audio/wav', 
             'audio/aac', 
@@ -30,7 +28,6 @@ const upload = multer({
             'audio/ogg', 
             'audio/wma', 
 
-            // Documents
             'application/pdf', 
             'application/msword', 
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
@@ -47,7 +44,7 @@ const upload = multer({
             'application/gzip', 
             'application/x-7z-compressed', 
 
-            // Others
+            
             'application/octet-stream', // General binary data
             'application/x-www-form-urlencoded' // Form data
         ];

@@ -1,7 +1,7 @@
 const { request, response } = require('express');
 const filesModel = require('../Models/filesModel');
 const s3 = require('../Config/awsS3Config')
-const initialData = require('../Data/filesData'); 
+const mongoose = require('mongoose'); 
 const { PutObjectCommand} = require('@aws-sdk/client-s3');
 const { GetObjectCommand } = require('@aws-sdk/client-s3');
 const { S3Client } = require('@aws-sdk/client-s3');
@@ -10,7 +10,6 @@ const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 const displayFilesAndFoldersMetaData = async (request, response) => {
     try {
         const loggedInUserEmail = request.userId;
-
         
         const authenticatedUserFiles = await filesModel.find({ userId: loggedInUserEmail });
 
@@ -67,21 +66,25 @@ const displayFilesAndFoldersMetaData = async (request, response) => {
     }
 };
 
-
+const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 const uploadFile = async (request, response) => {
     if (!request.file) {
         return response.status(400).json({ message: 'No file provided' });
     }
-
+    
     const { originalname, buffer,size } = request.file;
     const userId = request.userId;
-    const parentId = request.params.parentId || null;
+    const parentId = request.params.parentid || null;
 
 
     const fileKey = `upload/${userId}/${Date.now()}_${originalname}`
 
     try {
+        if (parentId && !isValidObjectId(parentId)) {
+            return response.status(400).json({ message: 'Invalid parent folder ID' });
+        }
+        
         const authenticatedUserFiles = await filesModel.find({ userId: userId });
         let totalStorageUsed = 0;
 

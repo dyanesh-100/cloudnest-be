@@ -22,7 +22,7 @@ const folderModel = new mongoose.Schema(
         lastOpenedAt: {
             type: Date, 
             default: null
-          }
+        },
     },
     {
         collection : 'folders'

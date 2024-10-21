@@ -9,7 +9,7 @@ const filesModel = new mongoose.Schema(
       filePath: { 
         type: String, 
         required: true 
-      },  // Path to AWS S3
+      },  
       fileFormat: {
         type: String, 
         required: true 
@@ -17,7 +17,7 @@ const filesModel = new mongoose.Schema(
       size: { 
         type: Number, 
         required: true 
-      },  // File size in bytes
+      },  
       createdAt: { 
         type: Date, 
         default: Date.now 
@@ -33,6 +33,11 @@ const filesModel = new mongoose.Schema(
       isFavourite: { 
         type: Boolean, 
         default: false 
+      },
+      parentId: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Folder', 
+        default: null 
       }
     },
     {
