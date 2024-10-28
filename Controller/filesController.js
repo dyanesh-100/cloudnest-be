@@ -14,8 +14,11 @@ const displayFilesAndFoldersMetaData = async (request, response) => {
         const authenticatedUserFiles = await filesModel.find({ userId: loggedInUserEmail });
 
         if (authenticatedUserFiles.length === 0) {
-            return response.status(404).json({ message: 'No data available for this user' });
+            return response.status(200).json({ 
+                message: 'Welcome! You haven\'t uploaded any files yet. Start uploading files to make the most of your cloud storage!' 
+            });
         }
+        
 
         let totalStorageUsed = 0;
         let documentSize = 0, videoSize = 0, imageSize = 0, audioSize = 0;
@@ -197,14 +200,14 @@ const toggleFavourite = async (request, response) => {
     }
 };
 
-const getFavouriteFilesAndFolders = async (request, response) => {
+const getFavouriteFiles= async (request, response) => {
     const userId = request.userId;
 
     try {
         const favourites = await filesModel.find({ userId, isFavourite: true });
 
         if (!favourites.length) {
-            return response.status(404).json({ message: 'No favourite files or folders found' });
+            return response.status(200).json({ message: 'No favourite files or folders found' });
         }
 
         response.status(200).json({ message: 'Favourite files and folders retrieved successfully', favourites });
@@ -215,4 +218,4 @@ const getFavouriteFilesAndFolders = async (request, response) => {
 
 
 
-module.exports = { displayFilesAndFoldersMetaData,uploadFile,downloadFile,toggleFavourite,getFavouriteFilesAndFolders,deleteFile};
+module.exports = { displayFilesAndFoldersMetaData,uploadFile,downloadFile,toggleFavourite,getFavouriteFiles,deleteFile};

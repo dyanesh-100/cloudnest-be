@@ -1,6 +1,5 @@
 const folderModel = require('../Models/folderModel');
 const mongoose = require('mongoose');
-// Helper function to validate ObjectId format
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 const createFolder = async (request, response) => {
@@ -9,12 +8,11 @@ const createFolder = async (request, response) => {
     const parentId = request.params.parentid || null;
 
     try {
-       
+
         if (parentId && !isValidObjectId(parentId)) {
             return response.status(400).json({ message: 'Invalid parent folder ID' });
         }
 
-       
         const existingFolder = await folderModel.findOne({ folderName, userId, parentId });
         if (existingFolder) {
             return response.status(400).json({ message: 'Folder with this name already exists in the parent folder' });
@@ -69,7 +67,6 @@ const deleteFolder = async(request,response) => {
 
 const updateLastOpenedAt = async (request, response) => {
     const { folderid } = request.params;
-
     try {
         
         if (!isValidObjectId(folderid)) {
@@ -91,4 +88,4 @@ const updateLastOpenedAt = async (request, response) => {
     }
 };
 
-module.exports = { createFolder, getFolder, updateLastOpenedAt,deleteFolder};
+module.exports = {createFolder,getFolder,updateLastOpenedAt,deleteFolder};
