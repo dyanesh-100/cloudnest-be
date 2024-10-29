@@ -48,7 +48,7 @@ const displayFilesAndFoldersMetaData = async (request, response) => {
                     documentSize += file.size;
                     break;
                 default:
-                    documentSize += file.size; // Consider anything else as a document
+                    documentSize += file.size; 
                     break;
             }
         });
