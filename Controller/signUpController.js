@@ -1,5 +1,7 @@
 const userModel = require('../Models/userModel')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const JWT_TOKEN = process.env.JWT_SECRET
 
 const registerNewUser = async(request,response) => {
     const encryptedPassword = await bcrypt.hash(request.body.password,10)
@@ -19,7 +21,13 @@ const registerNewUser = async(request,response) => {
                 return response.status(409).send({message : 'Already existing user'})
             }
         const newUser = await user.save()
-        response.status(201).json(newUser)    
+        const AUTH_TOKEN = jwt.sign({email:newUser.email}, JWT_TOKEN)
+                response.cookie('authToken', AUTH_TOKEN, {
+                    httpOnly: true, 
+                    secure: true, 
+                    sameSite: 'None'
+                });
+            return response.status(201).send({ status: "success", code: 201, message: "User registered successfully"})    
 
     }
     catch(error) {

@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 
 const userModel = new mongoose.Schema(
     {
+        accountType: {
+            type: String,
+            enum: ['google', 'email'],
+            default: 'email'
+        },
         firstName : {
             type : String,
             required : true
@@ -10,6 +15,9 @@ const userModel = new mongoose.Schema(
             type : String,
             required : true
         },
+        profilePic: {
+            type: String, 
+        },
         email : {
             type : String,
             required : true,
@@ -17,7 +25,9 @@ const userModel = new mongoose.Schema(
         },
         password : {
             type : String,
-            required : true
+            required: function() {
+                return this.signInType === 'email';
+            },
         }
     },
     {
