@@ -3,7 +3,7 @@ const { setResponseBody } = require("../Utils/setResponseBody")
 const userModel = require('../Models/userModel')
 
 const getGoogleAuthPageUrl = (request, response) => {
-    response.header('Access-Control-Allow-Origin','http://localhost:5173')
+    response.header('Access-Control-Allow-Origin',process.env.CLIENT_URL)
     response.header('Referrer-Policy', 'no-referer-when-downgrade')
 
     try {
@@ -28,7 +28,7 @@ const handleGoogleAuthCallback = async (request, response) => {
         });
         // response.status(200).send(userData)
 
-        response.redirect('http://localhost:5173/google-account-verification')
+        response.redirect(`${process.env.CLIENT_URL}/google-account-verification`)
     } 
     catch(error) {
         console.error(error)
