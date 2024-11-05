@@ -28,6 +28,7 @@ const authenticateUser = async (request, response, next) => {
         }
     } catch (error) {
         console.error('Authentication error:', error.message);
+        
         return response.status(403).json({ message: 'Invalid or expired token' });
     }
 };
