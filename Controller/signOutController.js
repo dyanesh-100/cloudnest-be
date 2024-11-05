@@ -1,11 +1,26 @@
 const signOutController = (request, response) => {
-    response.clearCookie('authToken', { domain: '.vercel.app', path: '/', secure: true, sameSite: 'Strict' });
-    response.clearCookie('id_token', { domain: '.vercel.app', path: '/', secure: true, sameSite: 'Strict' });
-    response.clearCookie('access_token', { domain: '.vercel.app', path: '/', secure: true, sameSite: 'Strict' });
-    response.clearCookie('userProfile', { domain: '.vercel.app', path: '/', secure: true, sameSite: 'Strict' });
-    
-    response.status(200).send({ message: 'Successfully signed out' });
+    console.log('Signing out...'); // Log for debugging
 
+    const isProduction = process.env.NODE_ENV === 'production';
+    const cookieOptions = {
+        path: '/',
+        secure: isProduction,
+        sameSite: 'Strict',
+    };
+
+    if (isProduction) {
+        cookieOptions.domain = '.vercel.app';
+    }
+
+    // Clear cookies
+    response.clearCookie('authToken', cookieOptions);
+    response.clearCookie('id_token', cookieOptions);
+    response.clearCookie('access_token', cookieOptions);
+    response.clearCookie('userProfile', cookieOptions);
+    
+    console.log('Cookies cleared'); // Log for debugging
+
+    response.status(200).send({ message: 'Successfully signed out' });
 };
 
 module.exports = { signOutController };
