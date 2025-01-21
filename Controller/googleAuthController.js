@@ -3,7 +3,7 @@ const { setResponseBody } = require("../Utils/setResponseBody")
 const userModel = require('../Models/userModel')
 
 const getGoogleAuthPageUrl = (request, response) => {
-    response.header('Access-Control-Allow-Origin','https://cloudnest-fe.vercel.app')
+    response.header('Access-Control-Allow-Origin','http://localhost:5173')
     response.header('Referrer-Policy', 'no-referer-when-downgrade')
 
     try {
@@ -28,7 +28,7 @@ const handleGoogleAuthCallback = async (request, response) => {
         });
         
 
-        response.redirect('https://cloudnest-fe.vercel.app/google-account-verification')
+        response.redirect('http://localhost:5173/google-account-verification')
     } 
     catch(error) {
         console.error(error)
