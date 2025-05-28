@@ -28,7 +28,7 @@ const handleGoogleAuthCallback = async (request, response) => {
         });
         
 
-        response.redirect('https://cloudnest-fe.vercel.app')
+        response.redirect('https://cloudnest-fe.vercel.app/google-account-verification')
     } 
     catch(error) {
         console.error(error)
