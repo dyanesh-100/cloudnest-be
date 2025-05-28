@@ -33,8 +33,8 @@ const handleGoogleAuthCallback = async (request, response) => {
         });
 
         const frontendRedirectUri = process.env.NODE_ENV === 'production'
-            ? 'https://cloudnest-fe.vercel.app/gauth/verify-user'
-            : 'http://localhost:5173/gauth/verify-user'; // Update this if your local FE URL differs
+            ? 'https://cloudnest-fe.vercel.app/'
+            : 'http://localhost:5173/'; // Update this if your local FE URL differs
 
         return response.redirect(frontendRedirectUri);
     } catch (error) {
