@@ -16,9 +16,20 @@ const app = express()
 
 const mongoose =require('mongoose')
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://cloudnest-fe.vercel.app',
+];
+
 app.use(cors({
-    origin: true, 
-    credentials: true
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
 }));
 
 app.use(express.json())
