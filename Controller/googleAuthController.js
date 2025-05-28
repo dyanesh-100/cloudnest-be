@@ -16,33 +16,25 @@ const getGoogleAuthPageUrl = (request, response) => {
 } 
 
 const handleGoogleAuthCallback = async (request, response) => {
-    const code = request.query.code;
-
-    if (!code) {
-        return response.status(400).send(setResponseBody("Missing authorization code", "invalid_request", null));
-    }
+    const code = request.query.code
 
     try {
-        const userData = await getUserDataFromCode(code, response);
-
+        const userData = await getUserDataFromCode(code, response)
+        
         response.cookie('userProfile', JSON.stringify(userData), {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
-            maxAge: 24 * 60 * 60 * 1000, // 1 day
+            secure: true,
+            maxAge: 24 * 60 * 60 * 1000, 
         });
+        
 
-        const frontendRedirectUri = process.env.NODE_ENV === 'production'
-            ? 'https://cloudnest-fe.vercel.app/'
-            : 'http://localhost:5173/'; // Update this if your local FE URL differs
-
-        return response.redirect(frontendRedirectUri);
-    } catch (error) {
-        console.error("Google Auth Callback Error:", error.message);
-        return response.status(500).send(setResponseBody("Authentication failed", "server_error", null));
+        response.redirect('https://cloudnest-fe.vercel.app')
+    } 
+    catch(error) {
+        console.error(error)
+        response.status(500).send(setResponseBody(error.message, "server_error", null))
     }
-};
-
+}
 
 const verifyToken = async (request, response) => {
     const accessToken = request.cookies.access_token;
