@@ -3,7 +3,7 @@ const { setResponseBody } = require("../Utils/setResponseBody")
 const userModel = require('../Models/userModel')
 
 const getGoogleAuthPageUrl = (request, response) => {
-    response.header('Access-Control-Allow-Origin','http://localhost:5173')
+    response.header('Access-Control-Allow-Origin','https://cloudnest-fe.vercel.app')
     response.header('Referrer-Policy', 'no-referer-when-downgrade')
 
     try {
